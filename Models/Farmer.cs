@@ -23,9 +23,14 @@
         public string? Address { get; set; }
         public string? DOB { get; set; }
         public string? Uniq_1 { get; set; }
-        public string? Uniq_2 {get;set;}
-        public string? Uniq_3 {get;set;}
-        public string? Uniq_4 {get;set;}
+        public string? Uniq_2 { get; set; }
+        public string? Uniq_3 { get; set; }
+        public string? Uniq_4 { get; set; }
+        public decimal tc { get; set; }
+        public decimal hd { get; set; }
+        public decimal dc { get; set; }
+        public decimal cs { get; set; }
+        public int MeasureType{ get; set; }
     }
     public class FarmerDocuments
     {

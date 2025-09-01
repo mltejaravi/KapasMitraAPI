@@ -27,6 +27,7 @@
         USP_CANCELSLOTBOOKING, // Cancel Slot Booking
         USP_OPENSLOTSOFFARMER, // Check open slots
         USP_GET_BARCODES_BY_MOBILE_NUMBER, // Get Barcodes by Mobile Number
-        S_POP_STATENOMENCLATURE // Get Uinque Id names
+        S_POP_STATENOMENCLATURE, // Get Uinque Id names
+        USP_SaveLog // Save Log
     }
 }

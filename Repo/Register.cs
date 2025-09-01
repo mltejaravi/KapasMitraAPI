@@ -57,6 +57,11 @@ namespace MarketsAPI.Repo
                 new SqlParameter("@Uniq_2", SqlDbType.VarChar) { Value = farmer.Uniq_2 },
                 new SqlParameter("@Uniq_3", SqlDbType.VarChar) { Value = farmer.Uniq_3 },
                 new SqlParameter("@Uniq_4", SqlDbType.VarChar) { Value = farmer.Uniq_4 },
+                new SqlParameter("@tc",SqlDbType.Decimal){ Precision = 10, Scale = 2, Value = farmer.tc },
+                new SqlParameter("@hd",SqlDbType.Decimal){ Precision = 10, Scale = 2, Value = farmer.hd },
+                new SqlParameter("@dc",SqlDbType.Decimal){ Precision = 10, Scale = 2, Value = farmer.dc },
+                new SqlParameter("@cs",SqlDbType.Decimal){ Precision = 10, Scale = 2, Value = farmer.cs },
+                new SqlParameter("@MeasureType",SqlDbType.Int){Value=farmer.MeasureType}
             };
 
             DataTable? rows = connectToDb?.InsertToSql(Enums.USP_MA_Farmer_Registration.ToString(), true, parameters);
@@ -191,8 +196,31 @@ namespace MarketsAPI.Repo
                 new SqlParameter("@Uniq_2", SqlDbType.VarChar) { Value = land.Uniq_2 },
                 new SqlParameter("@Uniq_3", SqlDbType.VarChar) { Value = land.Uniq_3 },
                 new SqlParameter("@Uniq_4", SqlDbType.VarChar) { Value = land.Uniq_4 },
+                new SqlParameter("@tc",SqlDbType.Decimal){ Precision = 10, Scale = 2, Value = land.tc },
+                new SqlParameter("@hd",SqlDbType.Decimal){ Precision = 10, Scale = 2, Value = land.hd },
+                new SqlParameter("@dc",SqlDbType.Decimal){ Precision = 10, Scale = 2, Value = land.dc },
+                new SqlParameter("@cs",SqlDbType.Decimal){ Precision = 10, Scale = 2, Value = land.cs },
+                new SqlParameter("@MeasureType",SqlDbType.Int){Value=land.MeasureType}
             };
             int? rows = connectToDb?.InsertSql(Enums.USP_ADD_LAND.ToString(), true, parameters);
+            if (rows == null)
+            {
+                throw new Exception("Failed to add land. No rows affected.");
+            }
+            return rows;
+        }
+
+        public int? CreateLog(ActivityLog log) {
+            var parameters = new SqlParameter[]{
+                new SqlParameter("AppID", SqlDbType.Int) { Value = log.AppId },
+                new SqlParameter("AppName", SqlDbType.VarChar, 20) { Value = log.AppName },
+                new SqlParameter("LoginId", SqlDbType.VarChar, 50) { Value =  log.LoginId },
+                new SqlParameter("ErrorShortDesc", SqlDbType.VarChar, -1) { Value =  log.ErrorShortDesc },
+                new SqlParameter("ErrorDesc", SqlDbType.VarChar, -1) { Value =  log.ErrorDesc },
+                new SqlParameter("LogInfo", SqlDbType.VarChar, -1) { Value = log.LogInfo }
+            };
+
+            int? rows = connectToDb?.InsertSql(Enums.USP_SaveLog.ToString(), true, parameters);
             if (rows == null)
             {
                 throw new Exception("Failed to add land. No rows affected.");

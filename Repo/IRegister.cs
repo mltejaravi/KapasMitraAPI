@@ -11,5 +11,6 @@ namespace MarketsAPI.Repo
         int? AddLand(int FarmerId, decimal TotalLand, decimal CottonLand, int MARKETID, int VILLAGEID, string UNIQUEID);
         int? AddLandExtended(Land land);
         int? CancelSlotBooking(CancelSlot cancelSlot);
+        int? CreateLog(ActivityLog log);
     }
 }
