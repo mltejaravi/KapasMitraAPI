@@ -61,7 +61,8 @@ namespace MarketsAPI.Repo
                 new SqlParameter("@hd",SqlDbType.Decimal){ Precision = 10, Scale = 2, Value = farmer.hd },
                 new SqlParameter("@dc",SqlDbType.Decimal){ Precision = 10, Scale = 2, Value = farmer.dc },
                 new SqlParameter("@cs",SqlDbType.Decimal){ Precision = 10, Scale = 2, Value = farmer.cs },
-                new SqlParameter("@MeasureType",SqlDbType.Int){Value=farmer.MeasureType}
+                new SqlParameter("@MeasureType",SqlDbType.Int){Value=farmer.MeasureType},
+                new SqlParameter("@UniqIdsTotalLand",SqlDbType.VarChar){Value= farmer.UniqIdsTotalLand}
             };
 
             DataTable? rows = connectToDb?.InsertToSql(Enums.USP_MA_Farmer_Registration.ToString(), true, parameters);

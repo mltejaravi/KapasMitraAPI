@@ -30,7 +30,8 @@
         public decimal hd { get; set; }
         public decimal dc { get; set; }
         public decimal cs { get; set; }
-        public int MeasureType{ get; set; }
+        public int MeasureType { get; set; }
+        public string? UniqIdsTotalLand{ get; set; }
     }
     public class FarmerDocuments
     {
