@@ -389,5 +389,73 @@ namespace MarketsAPI.Controllers
                 return NotFound($"No unique names found for state ID {stateId}.");
             }
         }
+
+        [HttpGet]
+        [Route("~/api/GetFarmerProofs/{barCode}")]
+        public IActionResult GetFarmerProofs(string barCode)
+        {
+            DataSet dataSet = readService!.GetFarmerProofsByBarcode(barCode) ?? new DataSet();
+            if (dataSet.Tables.Count > 0)
+            {
+                DataTable table = dataSet.Tables[0];
+                List<Dictionary<string, object?>> rows = Services.Services.ConvertToDictionary(table);
+                return Ok(rows);
+            }
+            else
+            {
+                return NotFound($"No data found for barcode {barCode}.");
+            }
+        }
+
+        [HttpGet]
+        [Route("~/api/GetLandDetails/{barCode}")]
+        public IActionResult GetLandDetails(string barCode)
+        {
+            DataSet dataSet = readService!.GetLandDetailsByBarcode(barCode) ?? new DataSet();
+            if (dataSet.Tables.Count > 0)
+            {
+                DataTable table = dataSet.Tables[0];
+                List<Dictionary<string, object?>> rows = Services.Services.ConvertToDictionary(table);
+                return Ok(rows);
+            }
+            else
+            {
+                return NotFound($"No data found for barcode {barCode}.");
+            }
+        }
+
+        [HttpGet]
+        [Route("~/api/GetAnnouncements")]
+        public IActionResult GetAnnouncements()
+        {
+            DataSet dataSet = readService!.GetAnnouncements() ?? new DataSet();
+            if (dataSet.Tables.Count > 0)
+            {
+                DataTable table = dataSet.Tables[0];
+                List<Dictionary<string, object?>> rows = Services.Services.ConvertToDictionary(table);
+                return Ok(rows);
+            }
+            else
+            {
+                return NotFound($"No announcements found!.");
+            }
+        }
+
+        [HttpGet]
+        [Route("~/api/GetHelpLineNumbers")]
+        public IActionResult GetHelpLineNumbers()
+        {
+            DataSet dataSet = readService!.GetHelpLineNumbers() ?? new DataSet();
+            if (dataSet.Tables.Count > 0)
+            {
+                DataTable table = dataSet.Tables[0];
+                List<Dictionary<string, object?>> rows = Services.Services.ConvertToDictionary(table);
+                return Ok(rows);
+            }
+            else
+            {
+                return NotFound($"No helpline numbers found!.");
+            }
+        }
     }
 }

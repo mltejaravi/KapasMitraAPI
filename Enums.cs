@@ -28,6 +28,12 @@
         USP_OPENSLOTSOFFARMER, // Check open slots
         USP_GET_BARCODES_BY_MOBILE_NUMBER, // Get Barcodes by Mobile Number
         S_POP_STATENOMENCLATURE, // Get Uinque Id names
-        USP_SaveLog // Save Log
+        USP_SaveLog, // Save Log
+        USP_Get_FarmerProofs_BY_BarCode,
+        USP_Create_Log,
+        USP_Rollback_FarmerDetails_OnFailOver,
+        USP_GET_LAND_Details,
+        USP_GET_Announcements,
+        USP_GET_HELPLineNumbers
     }
 }

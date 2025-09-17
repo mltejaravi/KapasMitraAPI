@@ -25,5 +25,9 @@ namespace MarketsAPI.Repo
         DataSet? GetOpenSlotCount(int farmerId);
         DataSet? GetBarcodesByMobileNumber(string mobileNumber);
         DataSet? GetUinqueNames(int satateId);
+        DataSet? GetFarmerProofsByBarcode(string barCode);
+        DataSet? GetLandDetailsByBarcode(string barCode);
+        DataSet? GetAnnouncements();
+        DataSet? GetHelpLineNumbers();
     }
 }

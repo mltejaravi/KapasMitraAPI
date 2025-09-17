@@ -24,7 +24,7 @@ namespace MarketsAPI.Controllers
             {
                 if (registerService != null)
                 {
-                    var result = registerService.AddLand(FarmerId, TotalLand, CottonLand,MARKETID,VILLAGEID,UNIQUEID);
+                    var result = registerService.AddLand(FarmerId, TotalLand, CottonLand, MARKETID, VILLAGEID, UNIQUEID);
                     return Ok(result);
                 }
                 else
@@ -47,6 +47,50 @@ namespace MarketsAPI.Controllers
                 if (registerService != null)
                 {
                     var result = registerService.AddLandExtended(land);
+                    return Ok(result);
+                }
+                else
+                {
+                    return BadRequest("Read service is not available.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("~/api/CreateTransactionLog")]
+        public IActionResult CreateTransactionLog(TransactionLog transactionLog)
+        {
+            try
+            {
+                if (registerService != null)
+                {
+                    var result = registerService.CreateTransactionLog(transactionLog);
+                    return Ok(result);
+                }
+                else
+                {
+                    return BadRequest("Read service is not available.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("~/api/CreateFailover/{FarmerId}")]
+        public IActionResult CreateFailover(int FarmerId)
+        {
+            try
+            {
+                if (registerService != null)
+                {
+                    var result = registerService.RollbackFarmerOnFailOver(FarmerId);
                     return Ok(result);
                 }
                 else

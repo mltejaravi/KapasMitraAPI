@@ -211,7 +211,8 @@ namespace MarketsAPI.Repo
             return rows;
         }
 
-        public int? CreateLog(ActivityLog log) {
+        public int? CreateLog(ActivityLog log)
+        {
             var parameters = new SqlParameter[]{
                 new SqlParameter("AppID", SqlDbType.Int) { Value = log.AppId },
                 new SqlParameter("AppName", SqlDbType.VarChar, 20) { Value = log.AppName },
@@ -224,7 +225,39 @@ namespace MarketsAPI.Repo
             int? rows = connectToDb?.InsertSql(Enums.USP_SaveLog.ToString(), true, parameters);
             if (rows == null)
             {
-                throw new Exception("Failed to add land. No rows affected.");
+                throw new Exception("Failed to create log. No rows affected.");
+            }
+            return rows;
+        }
+
+        public int? CreateTransactionLog(TransactionLog transactionLog)
+        {
+            var parameters = new SqlParameter[]{
+                new SqlParameter("@FarmerId", SqlDbType.Int){ Value = transactionLog.FarmerId },
+                new SqlParameter("@Status", SqlDbType.Int){ Value = transactionLog.Status},
+                new SqlParameter("@ErrorLog", SqlDbType.VarChar) { Value = transactionLog.ErrorLog }
+            };
+
+            int? rows = connectToDb!?.InsertSql(Enums.USP_Create_Log.ToString(), true, parameters);
+
+            if (rows == null)
+            {
+                throw new Exception("Failed to create transaction log. No rows affected.");
+            }
+            return rows;
+        }
+
+        public int? RollbackFarmerOnFailOver(int FarmerId)
+        {
+            var parameters = new SqlParameter[]{
+                new SqlParameter("@FarmerId", SqlDbType.Int){ Value = FarmerId }
+            };
+
+            int? rows = connectToDb!?.InsertSql(Enums.USP_Rollback_FarmerDetails_OnFailOver.ToString(), true, parameters);
+
+            if (rows == null)
+            {
+                throw new Exception("Failed to create failover. No rows affected.");
             }
             return rows;
         }

@@ -247,5 +247,41 @@ namespace MarketsAPI.Repo
             dataSet = connectToDb!?.ReadFromSql(Enums.S_POP_STATENOMENCLATURE.ToString(), true, "UniqueNames", parameters);
             return dataSet;
         }
+
+        public DataSet? GetFarmerProofsByBarcode(string barCode)
+        {
+            DataSet? dataSet = new DataSet();
+            var parameters = new SqlParameter[]{
+                new SqlParameter("@Barcode", barCode)
+            };
+
+            dataSet = connectToDb!?.ReadFromSql(Enums.USP_Get_FarmerProofs_BY_BarCode.ToString(), true, "Proofs", parameters);
+            return dataSet;
+        }
+
+        public DataSet? GetLandDetailsByBarcode(string barCode)
+        {
+            DataSet? dataSet = new DataSet();
+            var parameters = new SqlParameter[]{
+                new SqlParameter("@Barcode", barCode)
+            };
+
+            dataSet = connectToDb!?.ReadFromSql(Enums.USP_GET_LAND_Details.ToString(), true, "LandDetails", parameters);
+            return dataSet;
+        }
+
+        public DataSet? GetAnnouncements()
+        {
+            DataSet? dataSet = new DataSet();
+            dataSet = connectToDb?.ReadFromSql(Enums.USP_GET_Announcements.ToString(), true, "Announcements", null);
+            return dataSet;
+        }
+
+        public DataSet? GetHelpLineNumbers()
+        {
+            DataSet? dataSet = new DataSet();
+            dataSet = connectToDb?.ReadFromSql(Enums.USP_GET_HELPLineNumbers.ToString(), true, "HelpLineNumbers", null);
+            return dataSet;
+        }
     }
 }

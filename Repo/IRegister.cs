@@ -12,5 +12,7 @@ namespace MarketsAPI.Repo
         int? AddLandExtended(Land land);
         int? CancelSlotBooking(CancelSlot cancelSlot);
         int? CreateLog(ActivityLog log);
+        int? CreateTransactionLog(TransactionLog transactionLog);
+        int? RollbackFarmerOnFailOver(int FarmerId);
     }
 }
